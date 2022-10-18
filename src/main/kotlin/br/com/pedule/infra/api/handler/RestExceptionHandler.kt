@@ -14,7 +14,7 @@ class RestExceptionHandler {
             mapOf(
                 Pair("error", exception.message),
                 Pair("timestamp", LocalDateTime.now()),
-                Pair("status", HttpStatus.BAD_REQUEST),
+                Pair("status", HttpStatus.BAD_REQUEST)
             ), HttpStatus.BAD_REQUEST
         )
     }
