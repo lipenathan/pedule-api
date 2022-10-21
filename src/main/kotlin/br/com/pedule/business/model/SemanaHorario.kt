@@ -8,10 +8,10 @@ data class SemanaHorario(
     @Id
     @Column(name = "semana_horario_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id : Long,
+    var id: Long = 0,
     @Column(name = "horario")
-    var horario : LocalTime,
+    var horario: LocalTime,
     @ManyToOne
     @JoinColumn(name = "semana_id")
-    var semana : DiaSemana
+    var semana: DiaSemana
 )

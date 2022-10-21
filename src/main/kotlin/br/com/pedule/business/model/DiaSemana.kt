@@ -9,5 +9,5 @@ data class DiaSemana(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long,
     @Column(name = "dia")
-    var nome: String
+    var nome: String = ""
 )

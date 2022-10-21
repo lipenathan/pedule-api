@@ -12,7 +12,7 @@ class UsuarioProcess {
     @Autowired
     private lateinit var repository: UsuarioRepository
 
-    fun salvar(usuario: Usuario): Usuario {
+    fun novo(usuario: Usuario): Usuario {
         usuario.validar()
         validarUsuarioNaoExistente(usuario.email)
         return repository.save(usuario)

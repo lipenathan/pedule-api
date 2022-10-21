@@ -16,8 +16,8 @@ class UsuarioController {
     private lateinit var usuarioProcessos: UsuarioProcess
 
     @PostMapping("/novo")
-    fun salvar(@RequestBody usuario: Usuario): Usuario {
-        return usuarioProcessos.salvar(usuario)
+    fun novo(@RequestBody usuario: Usuario): Usuario {
+        return usuarioProcessos.novo(usuario)
     }
 
     @PostMapping("/atualizar")
