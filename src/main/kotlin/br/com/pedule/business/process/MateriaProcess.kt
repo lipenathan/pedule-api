@@ -11,12 +11,12 @@ class MateriaProcess {
     @Autowired
     private lateinit var repository: MateriaRepository
 
-    fun novo(materia: Materia): Materia {
+    fun new(materia: Materia): Materia {
         materia.validar()
         return repository.save(materia)
     }
 
-    fun atualizar(materia: Materia): Materia {
+    fun update(materia: Materia): Materia {
         materia.validar()
         return repository.save(materia)
     }

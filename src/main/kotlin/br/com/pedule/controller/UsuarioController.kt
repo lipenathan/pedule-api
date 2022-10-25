@@ -17,17 +17,17 @@ class UsuarioController {
 
     @PostMapping("/novo")
     fun novo(@RequestBody usuario: Usuario): Usuario {
-        return usuarioProcessos.novo(usuario)
+        return usuarioProcessos.new(usuario)
     }
 
     @PostMapping("/atualizar")
     fun atualizar(@RequestBody usuario: Usuario): Usuario {
-        return usuarioProcessos.atualizar(usuario)
+        return usuarioProcessos.update(usuario)
     }
 
     @PostMapping("/ativar")
     fun ativar(@RequestBody usuario: Usuario) {
-        usuarioProcessos.ativar(usuario)
+        usuarioProcessos.activate(usuario)
     }
 
     @PostMapping("/login")

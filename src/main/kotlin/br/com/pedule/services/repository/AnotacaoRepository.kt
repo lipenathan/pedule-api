@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface AnotacaoRepository : JpaRepository<Anotacao, Long>
+interface AnotacaoRepository : JpaRepository<Anotacao, Long> {
+    fun getByUsuarioId(id: Long): List<Anotacao>
+}

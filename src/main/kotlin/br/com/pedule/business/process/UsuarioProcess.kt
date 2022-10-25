@@ -12,18 +12,18 @@ class UsuarioProcess {
     @Autowired
     private lateinit var repository: UsuarioRepository
 
-    fun novo(usuario: Usuario): Usuario {
+    fun new(usuario: Usuario): Usuario {
         usuario.validar()
-        validarUsuarioNaoExistente(usuario.email)
+        validateNonExistingUser(usuario.email)
         return repository.save(usuario)
     }
 
-    fun atualizar(usuario: Usuario): Usuario {
+    fun update(usuario: Usuario): Usuario {
         usuario.validar()
         return repository.save(usuario)
     }
 
-    fun ativar(usuario: Usuario) {
+    fun activate(usuario: Usuario) {
         val usuarioByEmail = repository.findUsuarioByEmail(usuario.email)
         if (usuarioByEmail == usuario && !usuarioByEmail.emailAtivo) {
             usuarioByEmail.emailAtivo = true
@@ -35,19 +35,19 @@ class UsuarioProcess {
 
     fun login(usuario: Usuario): Usuario {
         val usuarioBase = repository.findUsuarioByEmail(usuario.email)
-        validarUsuario(usuarioBase, usuario)
+        validateUser(usuarioBase, usuario)
         return usuarioBase!!
     }
 
     //métodos privados
 
-    private fun validarUsuario(usuarioBase: Usuario?, usuario: Usuario): Boolean {
+    private fun validateUser(usuarioBase: Usuario?, usuario: Usuario): Boolean {
         if (usuarioBase == null) throw NegocioException("Usuário não cadastrado")
         if (!usuarioBase.emailAtivo) throw NegocioException("Usuário sem e-mail ativo")
         return if (usuarioBase.senha == usuario.senha) true else throw NegocioException("Senha inválida")
     }
 
-    private fun validarUsuarioNaoExistente(email: String) {
+    private fun validateNonExistingUser(email: String) {
         val usuario = repository.findUsuarioByEmail(email)
         if (usuario != null) throw NegocioException("Email já cadastrado")
     }

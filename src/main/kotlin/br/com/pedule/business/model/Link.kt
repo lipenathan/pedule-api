@@ -11,6 +11,6 @@ data class Link(
     @Column(name = "link")
     var url: String,
     @ManyToOne
-    @JoinColumn(name = "anotacao_id")
+    @JoinColumn(name = "anotacao_link_id")
     var anotacao : Anotacao
 )

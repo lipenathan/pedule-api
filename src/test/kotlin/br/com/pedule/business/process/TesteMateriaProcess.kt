@@ -34,7 +34,7 @@ class TesteMateriaProcess {
             usuario = usuario
         )
         try {
-            process.novo(materia)
+            process.new(materia)
         } catch (e: Exception) {
             fail ("Deve cadastrar sem erro  -> ${e.message}")
         }

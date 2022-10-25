@@ -1,9 +1,7 @@
 package br.com.pedule.controller
 
 import br.com.pedule.business.model.Materia
-import br.com.pedule.business.model.Usuario
 import br.com.pedule.business.process.MateriaProcess
-import br.com.pedule.business.process.UsuarioProcess
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -20,12 +18,12 @@ class MateriaController {
 
     @PostMapping("/novo")
     fun salvar(@RequestBody materia: Materia): Materia {
-        return materiaProcess.novo(materia)
+        return materiaProcess.new(materia)
     }
 
     @PostMapping("/atualizar")
     fun atualizar(@RequestBody materia: Materia): Materia {
-        return materiaProcess.atualizar(materia)
+        return materiaProcess.update(materia)
     }
 
     @GetMapping("/listar")
