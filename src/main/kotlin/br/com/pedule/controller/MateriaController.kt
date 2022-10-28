@@ -27,7 +27,7 @@ class MateriaController {
     }
 
     @GetMapping("/listar")
-    fun ativar(@RequestBody id: Long): List<Materia> {
+    fun listar(@RequestBody id: Long): List<Materia> {
         return materiaProcess.getByUserId(id)
     }
 }

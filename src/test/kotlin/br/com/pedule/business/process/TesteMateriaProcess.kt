@@ -30,6 +30,7 @@ class TesteMateriaProcess {
         val materia = Materia(
             titulo = "Primeira matéria",
             descricao = "primeira materia de teste",
+            cor = "CD5C5C",
             semanaHorario = listOf(semanaHorario),
             usuario = usuario
         )

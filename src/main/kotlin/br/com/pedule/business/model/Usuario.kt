@@ -9,7 +9,7 @@ data class Usuario(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuario_id")
-    private var id: Long = 0,
+    var id: Long = 0,
     @Column(name = "nome_usuario")
     var nome: String = "",
     @Column(name = "email")

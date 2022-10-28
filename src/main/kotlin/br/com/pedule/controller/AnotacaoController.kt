@@ -1,16 +1,16 @@
 package br.com.pedule.controller
 
 import br.com.pedule.business.model.Anotacao
+import br.com.pedule.business.model.Materia
 import br.com.pedule.business.process.AnotacaoProcess
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/anotacao")
 class AnotacaoController {
 
+    @Autowired
     private lateinit var anotacaoProcess: AnotacaoProcess
 
     @PostMapping("/novo")
@@ -23,5 +23,8 @@ class AnotacaoController {
         return anotacaoProcess.save(anotacao)
     }
 
-
+    @GetMapping("/listar")
+    fun listar(@RequestBody id: Long): List<Anotacao> {
+        return anotacaoProcess.getByUserId(id)
+    }
 }

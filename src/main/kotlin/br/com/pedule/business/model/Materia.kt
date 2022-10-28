@@ -10,11 +10,13 @@ data class Materia(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
     @Column(name = "titulo_materia")
-    var titulo: String,
+    var titulo: String = "",
     @Column(name = "professor")
     var professor: String = "",
     @Column(name = "descricao")
     var descricao: String = "",
+    @Column(name = "cor")
+    var cor: String = "",
     @ManyToOne
     @JoinColumn(name = "usuario_materia_id")
     var usuario: Usuario,
