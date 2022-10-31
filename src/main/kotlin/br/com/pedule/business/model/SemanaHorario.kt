@@ -6,7 +6,7 @@ import javax.persistence.*
 @Entity(name = "TB_SEMANA_HORARIO")
 data class SemanaHorario(
     @Id
-    @Column(name = "semana_horario_id")
+    @Column(name = "semana_hora_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
     @Column(name = "horario")

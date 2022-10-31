@@ -22,8 +22,8 @@ class AtividadeController {
         return atividadeProcess.update(anotacao)
     }
 
-    @GetMapping("/listar")
-    fun listar(@RequestBody id: Long): List<Atividade> {
+    @GetMapping("/listar/{id}")
+    fun listar(@PathVariable id: Long): List<Atividade> {
         return atividadeProcess.getByUserId(id)
     }
 }

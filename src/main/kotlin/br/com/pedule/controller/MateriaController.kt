@@ -4,6 +4,7 @@ import br.com.pedule.business.model.Materia
 import br.com.pedule.business.process.MateriaProcess
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -26,8 +27,8 @@ class MateriaController {
         return materiaProcess.update(materia)
     }
 
-    @GetMapping("/listar")
-    fun listar(@RequestBody id: Long): List<Materia> {
+    @GetMapping("/listar/{id}")
+    fun listar(@PathVariable id: Long): List<Materia> {
         return materiaProcess.getByUserId(id)
     }
 }

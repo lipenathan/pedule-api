@@ -23,8 +23,8 @@ class AnotacaoController {
         return anotacaoProcess.save(anotacao)
     }
 
-    @GetMapping("/listar")
-    fun listar(@RequestBody id: Long): List<Anotacao> {
+    @GetMapping("/listar/{id}")
+    fun listar(@PathVariable id: Long): List<Anotacao> {
         return anotacaoProcess.getByUserId(id)
     }
 }
