@@ -20,7 +20,7 @@ data class Materia(
     @ManyToOne
     @JoinColumn(name = "usuario_materia_id")
     var usuario: Usuario,
-    @ManyToMany(cascade = [CascadeType.PERSIST])
+    @ManyToMany(cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     @JoinTable(
         name = "TB_SEMANA_HORA_MATERIA",
         joinColumns = [JoinColumn(name = "MATERIA_ID")],
