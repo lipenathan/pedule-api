@@ -8,8 +8,10 @@ data class Link(
     @Column(name = "link_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long,
-    @Column(name = "link")
+    @Column(name = "url")
     var url: String,
+    @Column(name = "descricao")
+    var descricao: String,
     @ManyToOne
     @JoinColumn(name = "anotacao_link_id")
     var anotacao : Anotacao
