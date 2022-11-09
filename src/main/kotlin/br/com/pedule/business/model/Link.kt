@@ -1,6 +1,7 @@
 package br.com.pedule.business.model
 
 import br.com.pedule.infra.exceptions.NegocioException
+import com.fasterxml.jackson.annotation.JsonBackReference
 import javax.persistence.*
 
 @Entity(name="TB_LINK")
@@ -14,6 +15,7 @@ data class Link(
     @Column(name = "descricao")
     var descricao: String = "",
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     @JoinColumn(name = "anotacao_link_id")
     var anotacao : Anotacao? = null
 ) {

@@ -1,6 +1,7 @@
 package br.com.pedule.business.model
 
 import br.com.pedule.infra.exceptions.NegocioException
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -19,6 +20,7 @@ data class Anotacao(
     @Column(name = "data_hora")
     var dataHorario: LocalDateTime? = null,
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "anotacao")
+    @JsonManagedReference
     var link: MutableList<Link> = mutableListOf(),
     @ManyToOne
     @JoinColumn(name = "usuario_anotacao_id")
