@@ -1,6 +1,7 @@
 package br.com.pedule.business.process
 
 import br.com.pedule.business.model.Anotacao
+import br.com.pedule.business.model.Link
 import br.com.pedule.business.model.Usuario
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.fail
@@ -56,11 +57,26 @@ class TesteAnotacaoProcess {
     @Test
     fun deveBuscarAnotacoesPeloIdDoUsuario() {
         try {
-            val anotacaos = anotacaoProcess.getByUserId(16)
+            val anotacaos = anotacaoProcess.getByUserId(6)
             assert(anotacaos.isNotEmpty())
             println(anotacaos)
         } catch (e: Exception) {
             fail { "Deve buscar anotação sem erro -> ${e.message}" }
+        }
+    }
+
+    @Test
+    fun deveSalvarAnotacaoComLink() {
+        val data = LocalDateTime.of(2022, 7, 20, 17, 30)
+        val usuario = Usuario(id = 6)
+        val anotacao = Anotacao(
+            titulo = "teste 3", descricao = "anotação teste linkeers",
+            lembrete = true, dataHorario = data, usuario = usuario, link = mutableListOf(Link(url = "http://dajshdkajshd.combo"))
+        )
+        try {
+            anotacaoProcess.save(anotacao)
+        } catch (e: Exception) {
+            fail { "Deve cadastrar anotação com sucesso" }
         }
     }
 }

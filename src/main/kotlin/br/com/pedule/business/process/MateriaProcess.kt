@@ -1,6 +1,7 @@
 package br.com.pedule.business.process
 
 import br.com.pedule.business.model.Materia
+import br.com.pedule.services.repository.LinkRepository
 import br.com.pedule.services.repository.MateriaRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

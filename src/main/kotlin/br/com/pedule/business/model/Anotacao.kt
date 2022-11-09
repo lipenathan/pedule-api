@@ -18,8 +18,7 @@ data class Anotacao(
     var lembrete: Boolean = false,
     @Column(name = "data_hora")
     var dataHorario: LocalDateTime? = null,
-    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
-    @JoinColumn(name = "anotacao_link_id")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "anotacao")
     var link: MutableList<Link> = mutableListOf(),
     @ManyToOne
     @JoinColumn(name = "usuario_anotacao_id")
