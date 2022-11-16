@@ -12,18 +12,18 @@ class AtividadeController {
     @Autowired
     private lateinit var atividadeProcess: AtividadeProcess
 
-    @PostMapping("/novo")
-    private fun new(@RequestBody anotacao: Atividade): Atividade {
-        return atividadeProcess.new(anotacao)
+    @PostMapping("/salvar")
+    private fun save(@RequestBody anotacao: Atividade): Atividade {
+        return atividadeProcess.save(anotacao)
     }
 
-    @PostMapping("/atualizar")
-    private fun update(@RequestBody anotacao: Atividade): Atividade {
-        return atividadeProcess.update(anotacao)
+    @DeleteMapping("deletar/{id}")
+    private fun delete(@PathVariable id: Long) {
+        atividadeProcess.delete(id)
     }
 
     @GetMapping("/listar/{id}")
-    fun listar(@PathVariable id: Long): List<Atividade> {
+    fun list(@PathVariable id: Long): List<Atividade> {
         return atividadeProcess.getByUserId(id)
     }
 }

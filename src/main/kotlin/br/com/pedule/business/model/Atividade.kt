@@ -1,7 +1,9 @@
 package br.com.pedule.business.model
 
 import br.com.pedule.infra.exceptions.NegocioException
+import com.fasterxml.jackson.annotation.JsonFormat
 import java.time.LocalDateTime
+import java.time.ZonedDateTime
 import javax.persistence.*
 
 @Entity(name="TB_ATIVIDADE")
@@ -15,7 +17,7 @@ data class Atividade(
     @Column(name = "descricao")
     var descricao: String = "",
     @Column(name = "data_hora_entrega")
-    var dataHorarioEntrega: LocalDateTime? = null,
+    var dataHorarioEntrega: ZonedDateTime? = null,
     @Column(name = "prioridade")
     var prioridade: Boolean = false,
     @Column(name = "categoria")

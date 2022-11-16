@@ -16,17 +16,12 @@ class UsuarioController {
     private lateinit var usuarioProcessos: UsuarioProcess
 
     @PostMapping("/novo")
-    fun novo(@RequestBody usuario: Usuario): Usuario {
-        return usuarioProcessos.new(usuario)
-    }
-
-    @PostMapping("/atualizar")
-    fun atualizar(@RequestBody usuario: Usuario): Usuario {
-        return usuarioProcessos.update(usuario)
+    fun save(@RequestBody usuario: Usuario): Usuario {
+        return usuarioProcessos.save(usuario)
     }
 
     @PostMapping("/ativar")
-    fun ativar(@RequestBody usuario: Usuario) {
+    fun activate(@RequestBody usuario: Usuario) {
         usuarioProcessos.activate(usuario)
     }
 

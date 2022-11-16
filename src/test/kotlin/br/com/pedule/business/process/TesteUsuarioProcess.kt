@@ -19,7 +19,7 @@ class TesteUsuarioProcess {
         val dataNasc = LocalDate.of(1996, 6, 15)
         val usuario = Usuario(email = "augusto@gmail.com", dataNascimento = dataNasc, senha = "abc112")
         try {
-            usuarioProcess.new(usuario)
+            usuarioProcess.save(usuario)
             fail { "Não deve persistir usuário sem nome" }
         } catch (e:Exception) {
             println(e)
@@ -31,7 +31,7 @@ class TesteUsuarioProcess {
         val dataNasc = LocalDate.of(1996, 6, 15)
         val usuario = Usuario(nome = "Augusto", dataNascimento = dataNasc, senha = "abc112")
         try {
-            usuarioProcess.new(usuario)
+            usuarioProcess.save(usuario)
             fail { "Não deve persistir usuário sem e-mail" }
         } catch (e:Exception) {
             println(e)
@@ -42,7 +42,7 @@ class TesteUsuarioProcess {
     fun naoDeveCadastrarUsuarioSemDataNascimento() {
         val usuario = Usuario(nome = "augusto", email = "augusto@gmail.com", senha = "abc112")
         try {
-            usuarioProcess.new(usuario)
+            usuarioProcess.save(usuario)
             fail { "Não deve persistir usuário sem data de nascimento" }
         } catch (e:Exception) {
             println(e)
@@ -54,7 +54,7 @@ class TesteUsuarioProcess {
         val dataNasc = LocalDate.of(1996, 6, 15)
         val usuario = Usuario(nome = "augusto", email = "felipe@gmail.com", dataNascimento = dataNasc)
         try {
-            usuarioProcess.new(usuario)
+            usuarioProcess.save(usuario)
             fail { "Não deve persistir usuário sem senha" }
         } catch (e:Exception) {
             println(e)
@@ -79,8 +79,8 @@ class TesteUsuarioProcess {
         val usuario1 = Usuario(nome = "teste1", email = "felipe@gmail.com", dataNascimento = dataNasc, senha = "abc123")
         val usuario2 = Usuario(nome = "teste2", email = "felipe@gmail.com", dataNascimento = dataNasc, senha = "efg312")
         try {
-            usuarioProcess.new(usuario1)
-            usuarioProcess.new(usuario2)
+            usuarioProcess.save(usuario1)
+            usuarioProcess.save(usuario2)
             fail {"não deve cadastrar dois usuários com o mesmo e-mail"}
         } catch (e : Exception) {
             println(e)
@@ -104,7 +104,7 @@ class TesteUsuarioProcess {
         val dataNasc = LocalDate.of(1996, 6, 15)
         val usuario = Usuario(nome = "teste11", email = "felipe123@gmail.com", dataNascimento = dataNasc, senha = "abc123")
         try {
-            usuarioProcess.new(usuario)
+            usuarioProcess.save(usuario)
             usuarioProcess.login(usuario)
             fail { "Não deve logar com senha incorreta" }
         } catch (e: Exception) {
@@ -117,7 +117,7 @@ class TesteUsuarioProcess {
         val dataNasc = LocalDate.of(1996, 6, 15)
         val usuario = Usuario(nome = "teste11", email = "felipe12@gmail.com", dataNascimento = dataNasc, senha = "abc123")
         try {
-            usuarioProcess.new(usuario)
+            usuarioProcess.save(usuario)
             usuarioProcess.activate(usuario)
             usuario.senha = "11"
             usuarioProcess.login(usuario)
@@ -133,7 +133,7 @@ class TesteUsuarioProcess {
         val dataNasc = LocalDate.of(1996, 6, 15)
         val usuario = Usuario(nome = "teste", email = "felipe@gmail.com", dataNascimento = dataNasc, senha = "abc123")
         try {
-            usuarioProcess.new(usuario)
+            usuarioProcess.save(usuario)
         } catch (e:Exception) {
             fail { "Deve cadastrar usuário com sucesso" }
         }
@@ -144,7 +144,7 @@ class TesteUsuarioProcess {
         val dataNasc = LocalDate.of(1996, 6, 15)
         val usuario = Usuario(nome = "testonildo", email = "testonildo@gmail.com", dataNascimento = dataNasc, senha = "abc123")
         try {
-            usuarioProcess.new(usuario)
+            usuarioProcess.save(usuario)
             usuarioProcess.activate(usuario)
         } catch (e:Exception) {
             fail { "Deve ativar usuário com sucesso" }
@@ -156,7 +156,7 @@ class TesteUsuarioProcess {
         val dataNasc = LocalDate.of(1996, 6, 15)
         val usuario = Usuario(nome = "teste", email = "felipe1@gmail.com", dataNascimento = dataNasc, senha = "abc123")
         try {
-            usuarioProcess.new(usuario)
+            usuarioProcess.save(usuario)
             usuarioProcess.activate(usuario)
             val retorno = usuarioProcess.login(usuario)
             println(retorno)

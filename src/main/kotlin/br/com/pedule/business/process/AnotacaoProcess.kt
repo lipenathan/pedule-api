@@ -5,6 +5,7 @@ import br.com.pedule.services.repository.AnotacaoRepository
 import br.com.pedule.services.repository.LinkRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.web.bind.annotation.DeleteMapping
 
 @Service
 class AnotacaoProcess {
@@ -27,6 +28,10 @@ class AnotacaoProcess {
         }
 
         return savedAnotacao
+    }
+
+    fun delete(id: Long) {
+        repository.deleteById(id)
     }
 
     fun getByUserId(id: Long): List<Anotacao> {

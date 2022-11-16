@@ -6,6 +6,8 @@ import org.junit.jupiter.api.fail
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.LocalDateTime
+import java.util.*
+
 
 @SpringBootTest
 class TesteAtividadeProcess {
@@ -23,10 +25,10 @@ class TesteAtividadeProcess {
     @Test
     fun deveCadastrarAtividadeComSucesso() {
         val usuario = Usuario(16)
-        val dataHorario = LocalDateTime.of(2022, 6, 1, 22, 15)
-        val atividade = Atividade(usuario = usuario, titulo = "Teste anotação", dataHorarioEntrega = dataHorario)
+        val dataHorario = getDateof(LocalDateTime.of(2022, 6, 1, 22, 15))
+        val atividade = Atividade(usuario = usuario, titulo = "Teste horário", dataHorarioEntrega = dataHorario)
         try {
-            process.new(atividade)
+            process.save(atividade)
             println(atividade)
         } catch (e: Exception) {
             fail { "Deve cadastrar atividade com sucesso -> ${e.message}" }
@@ -37,11 +39,11 @@ class TesteAtividadeProcess {
     fun deveCadastrarAtividadeComMateriaComSucesso() {
         val usuario = Usuario(16)
         val materia = Materia(id = 11, usuario = usuario)
-        val dataHorario = LocalDateTime.of(2022, 6, 1, 22, 15)
+        val dataHorario = getDateof(LocalDateTime.of(2022, 6, 1, 22, 15))
         val atividade = Atividade(usuario = usuario, titulo = "Teste anotação",
             dataHorarioEntrega = dataHorario, materia = materia)
         try {
-            process.new(atividade)
+            process.save(atividade)
             println(atividade)
         } catch (e: Exception) {
             fail { "Deve cadastrar atividade com sucesso -> ${e.message}" }
@@ -53,14 +55,20 @@ class TesteAtividadeProcess {
         val usuario = Usuario(16)
         val curso = Curso(usuario = usuario)
         curso.usuario = usuario
-        val dataHorario = LocalDateTime.of(2022, 6, 1, 22, 15)
+        val dataHorario = getDateof(LocalDateTime.of(2022, 6, 1, 22, 15))
         val atividade = Atividade(usuario = usuario, titulo = "Teste anotação",
             dataHorarioEntrega = dataHorario, curso = curso)
         try {
-            process.new(atividade)
+            process.save(atividade)
             println(atividade)
         } catch (e: Exception) {
             fail { "Deve cadastrar atividade com sucesso -> ${e.message}" }
         }
+    }
+
+    @Test
+    fun tzTest() {
+        val calendar: Calendar = Calendar.getInstance()
+        println(calendar.getTimeZone())
     }
 }

@@ -13,18 +13,18 @@ class AnotacaoController {
     @Autowired
     private lateinit var anotacaoProcess: AnotacaoProcess
 
-    @PostMapping("/novo")
-    private fun new(@RequestBody anotacao: Anotacao): Anotacao {
+    @PostMapping("/salvar")
+    private fun save(@RequestBody anotacao: Anotacao): Anotacao {
         return anotacaoProcess.save(anotacao)
     }
 
-    @PostMapping("/atualizar")
-    private fun update(@RequestBody anotacao: Anotacao): Anotacao {
-        return anotacaoProcess.save(anotacao)
+    @DeleteMapping("/deletar/{id}")
+    private fun delete(@PathVariable id: Long) {
+        anotacaoProcess.delete(id)
     }
 
     @GetMapping("/listar/{id}")
-    fun listar(@PathVariable id: Long): List<Anotacao> {
+    fun list(@PathVariable id: Long): List<Anotacao> {
         return anotacaoProcess.getByUserId(id)
     }
 }
