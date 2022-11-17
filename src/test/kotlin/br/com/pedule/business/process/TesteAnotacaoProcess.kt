@@ -3,14 +3,11 @@ package br.com.pedule.business.process
 import br.com.pedule.business.model.Anotacao
 import br.com.pedule.business.model.Link
 import br.com.pedule.business.model.Usuario
-import br.com.pedule.business.model.getDateof
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.fail
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.ZonedDateTime
 
 @SpringBootTest
 class TesteAnotacaoProcess {
@@ -44,7 +41,7 @@ class TesteAnotacaoProcess {
     //casos de sucesso
     @Test
     fun deveCadastrarAnotacaoComSucesso() {
-        val data = getDateof(LocalDateTime.of(2022, 7, 20, 17, 30))
+        val data = LocalDateTime.of(2022, 7, 20, 17, 30)
         val usuario = Usuario(id = 16)
         val anotacao = Anotacao(
             titulo = "teste 3", descricao = "anotação teste 3",
@@ -70,7 +67,7 @@ class TesteAnotacaoProcess {
 
     @Test
     fun deveSalvarAnotacaoComLink() {
-        val data = getDateof(LocalDateTime.of(2022, 7, 20, 17, 30))
+        val data = LocalDateTime.of(2022, 7, 20, 17, 30)
         val usuario = Usuario(id = 6)
         val anotacao = Anotacao(
             titulo = "teste 4", descricao = "anotação teste linkeers",

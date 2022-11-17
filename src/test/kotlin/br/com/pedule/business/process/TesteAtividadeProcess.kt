@@ -25,7 +25,7 @@ class TesteAtividadeProcess {
     @Test
     fun deveCadastrarAtividadeComSucesso() {
         val usuario = Usuario(16)
-        val dataHorario = getDateof(LocalDateTime.of(2022, 6, 1, 22, 15))
+        val dataHorario = LocalDateTime.of(2022, 6, 1, 22, 15)
         val atividade = Atividade(usuario = usuario, titulo = "Teste horário", dataHorarioEntrega = dataHorario)
         try {
             process.save(atividade)
@@ -39,7 +39,7 @@ class TesteAtividadeProcess {
     fun deveCadastrarAtividadeComMateriaComSucesso() {
         val usuario = Usuario(16)
         val materia = Materia(id = 11, usuario = usuario)
-        val dataHorario = getDateof(LocalDateTime.of(2022, 6, 1, 22, 15))
+        val dataHorario = LocalDateTime.of(2022, 6, 1, 22, 15)
         val atividade = Atividade(usuario = usuario, titulo = "Teste anotação",
             dataHorarioEntrega = dataHorario, materia = materia)
         try {
@@ -55,7 +55,7 @@ class TesteAtividadeProcess {
         val usuario = Usuario(16)
         val curso = Curso(usuario = usuario)
         curso.usuario = usuario
-        val dataHorario = getDateof(LocalDateTime.of(2022, 6, 1, 22, 15))
+        val dataHorario = LocalDateTime.of(2022, 6, 1, 22, 15)
         val atividade = Atividade(usuario = usuario, titulo = "Teste anotação",
             dataHorarioEntrega = dataHorario, curso = curso)
         try {
