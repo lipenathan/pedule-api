@@ -1,6 +1,8 @@
 package br.com.pedule.business.model
 
 import br.com.pedule.infra.exceptions.NegocioException
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonProperty
 import java.time.LocalDate
 import javax.persistence.*
 
@@ -21,12 +23,12 @@ data class Usuario(
     @Column(name = "email_ativo")
     var emailAtivo: Boolean = false,
     @Column(name = "senha")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     var senha : String = ""
 ) {
     fun validar() {
         if (nome.isEmpty()) throw NegocioException("Nome é obrigatório")
         if (email.isEmpty()) throw NegocioException("E-mail é obrigatório")
-        if (dataNascimento == null) throw NegocioException("Data de nascimento é obrigatório")
         if (senha.isEmpty()) throw NegocioException("Senha é obrigatório")
     }
 

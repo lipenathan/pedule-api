@@ -4,6 +4,7 @@ import br.com.pedule.business.model.Usuario;
 import br.com.pedule.infra.exceptions.NegocioException
 import br.com.pedule.services.repository.UsuarioRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,10 +12,13 @@ class UsuarioProcess {
 
     @Autowired
     private lateinit var repository: UsuarioRepository
+    @Autowired
+    private lateinit var encoder: PasswordEncoder
 
     fun save(usuario: Usuario): Usuario {
         usuario.validar()
         validateNonExistingUser(usuario.email)
+        usuario.senha = encoder.encode(usuario.senha)
         return repository.save(usuario)
     }
 
