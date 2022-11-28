@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class UserServiceImpl : UserDetailsService {
@@ -27,8 +28,26 @@ class UserServiceImpl : UserDetailsService {
     fun save(usuario: Usuario): Usuario {
         usuario.validar()
         validateNonExistingUser(usuario.email)
+        usuario.nome = upperCaseFirstLetters(usuario.nome)
         usuario.senha = encoder.encode(usuario.senha)
         return repository.save(usuario)
+    }
+
+    private fun upperCaseFirstLetters(name: String): String {
+        val names = name.split(" ")
+        val upperNames = mutableListOf<String>()
+        for (item in names) {
+            upperNames.add(item.replaceRange(0,1,item[0].uppercase()))
+        }
+        var upperName = ""
+        for ((index, value) in upperNames.withIndex()) {
+            upperName += if (index == 0) {//verifica se é o primeiro nome
+                value
+            } else {
+                " ${value}"
+            }
+        }
+        return upperName
     }
 
     fun activate(usuario: Usuario) {

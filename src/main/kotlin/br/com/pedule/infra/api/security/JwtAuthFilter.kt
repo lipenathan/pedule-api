@@ -16,7 +16,7 @@ class JwtAuthFilter(val jwtService: JwtService, val userService: UserServiceImpl
         filterChain: FilterChain
     ) {
         val authorization = request.getHeader("Authorization")
-        if (authorization != null && authorization.startsWith("Bearer")) {
+         if (authorization != null && authorization.startsWith("Bearer")) {
             val token = authorization.split(" ")[1]
             val validToken = jwtService.validToken(token)
             if (validToken) {

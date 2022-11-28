@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.web.access.channel.ChannelProcessingFilter
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.web.filter.OncePerRequestFilter
 
@@ -41,10 +42,20 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .authorizeRequests()
                 .antMatchers("/usuario/novo").permitAll()
                 .antMatchers("/usuario/login").permitAll()
+                .antMatchers(
+                    "/swagger-resources/**",
+                    "/swagger-ui/**",
+                    "/v3/api-docs/**",
+                    "/swagger-ui.html",
+                    "/v3/pedule-docs",
+                    "/pedule-docs.html",
+                    "/webjars/**"
+                ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
+                .addFilterBefore(CorsFilterConfig(), ChannelProcessingFilter::class.java)
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter::class.java)
         }
     }

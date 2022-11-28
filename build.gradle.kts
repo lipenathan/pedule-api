@@ -29,6 +29,8 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-ui:1.6.4")
     runtimeOnly("mysql:mysql-connector-java")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    implementation ("org.apache.httpcomponents:httpclient")
 }
 
 tasks.withType<KotlinCompile> {

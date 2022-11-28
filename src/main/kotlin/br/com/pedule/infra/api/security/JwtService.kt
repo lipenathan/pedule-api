@@ -1,11 +1,9 @@
 package br.com.pedule.infra.api.security
 
-import br.com.pedule.PeduleApiApplication
 import br.com.pedule.business.model.Usuario
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
-import org.springframework.boot.SpringApplication
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -30,8 +28,9 @@ class JwtService {
             .compact()
     }
 
-    fun getTokenClaims(token: String):Claims {
-        return Jwts.parser()
+    fun getTokenClaims(token: String): Claims {
+        return Jwts
+            .parser()
             .setSigningKey(SIGN_KEY)
             .parseClaimsJws(token)
             .body
