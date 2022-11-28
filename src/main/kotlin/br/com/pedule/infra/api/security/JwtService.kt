@@ -13,12 +13,12 @@ import java.util.*
 class JwtService {
 
     companion object {
-        const val EXPIRATION = 30L
+        const val EXPIRATION = 48L
         const val SIGN_KEY = "761da7c6-a50c-43de-870b-9f67669e46ac"
     }
 
     fun generateToken(user: Usuario): String {
-        val date = LocalDateTime.now().plusMinutes(EXPIRATION)
+        val date = LocalDateTime.now().plusHours(EXPIRATION)
         val instant = date.atZone(ZoneId.systemDefault()).toInstant()
         val expiration = Date.from(instant)
         return Jwts.builder()
