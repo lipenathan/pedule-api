@@ -1,5 +1,6 @@
 package br.com.pedule.business.model
 
+import br.com.pedule.infra.exceptions.NegocioException
 import java.time.Duration
 import javax.persistence.*
 
@@ -20,4 +21,8 @@ data class Curso(
     @ManyToOne
     @JoinColumn(name = "usuario_curso_id")
     var usuario : Usuario
-)
+) {
+    fun validar() {
+        if (this.nome.isNullOrEmpty()) throw NegocioException("Nome da curso precisa ser preenchido")
+    }
+}
